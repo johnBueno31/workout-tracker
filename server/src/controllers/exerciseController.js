@@ -12,7 +12,7 @@ async function createExercise(req, res) {
 		const result = await pool.query(
 			`
             INSERT INTO exercise_definitions (name, muscle_group)
-            VALUES ($1, $1)
+            VALUES ($1, $2)
             RETURNING id, name, muscle_group, created_at
             `,
 			[name, muscleGroup || ""],
@@ -23,7 +23,7 @@ async function createExercise(req, res) {
 		console.error(error);
 
 		if (error.code === "23505") {
-			return res.status(400).json({ message: "Exercise already exists" });
+			return res.status(409).json({ message: "Exercise already exists" });
 		}
 
 		return res.status(500).json({ message: "Failed to create exercise" });
