@@ -1,3 +1,12 @@
+import StatCard from "../components/StatCard";
+
 export default function Dashboard() {
-	return <h2>Dashboard</h2>;
+	return (
+		<div>
+			<h2>Dashboard</h2>
+			<div>StatCard</div>
+			<div>StatCard</div>
+			<div>StatCard</div>
+		</div>
+	);
 }
